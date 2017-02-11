@@ -1,3 +1,4 @@
+import {Http} from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,7 +13,7 @@ export class AppComponent implements OnInit {
   todo:string;
   action:string = 'All';
 
-  constructor() { }
+  constructor(private http:Http) { }
 
   ngOnInit() {
   }
@@ -23,6 +24,10 @@ export class AppComponent implements OnInit {
       checked:false
     });
     todoInput.value = null;
+  }
+
+  removeTodo(itemidx){
+    this.todos.splice(itemidx,1);
   }
 
   toggleComplete(item){
@@ -39,6 +44,13 @@ export class AppComponent implements OnInit {
 
   doFilterData(actioncode){
     this.action = actioncode;
+  }
+
+  toggleAll(){
+    this.todos = this.todos.map((item) => {
+      item.checked = !item.checked;
+      return item;
+    });
   }
 
 }
