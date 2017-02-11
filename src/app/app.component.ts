@@ -28,4 +28,12 @@ export class AppComponent implements OnInit {
     item.checked = true;
   }
 
+  doClearCompleted(isCompleted){
+    if(isCompleted){
+      this.todos = this.todos.filter((item) => {
+        return (item.checked) ? false : true;
+      });
+    }
+  }
+
 }
