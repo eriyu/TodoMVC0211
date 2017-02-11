@@ -37,8 +37,8 @@ export class AppComponent implements OnInit {
     }
   }
 
-  doFilterData(_action){
-    this.action = _action;
+  doFilterData(actioncode){
+    this.action = actioncode;
   }
 
 }

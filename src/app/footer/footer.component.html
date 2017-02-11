@@ -3,7 +3,10 @@
     <span class="todo-count"><strong>{{data.length}}</strong> item left</span>
     <!-- Remove this if you don't implement routing -->
     <ul class="filters">
-      <li>
+      <li *ngFor="let action of actions">
+        <a [ngClass]="{selected:action.selected}" href="#" (click)="fireDoFilter(action.code)">{{action.code}}</a>
+      </li>
+      <!--<li>
         <a class="selected" href="#" (click)="fireDoFilter('All')">All</a>
       </li>
       <li>
@@ -11,7 +14,7 @@
       </li>
       <li>
         <a href="#" (click)="fireDoFilter('Completed')">Completed</a>
-      </li>
+      </li>-->
       <!--<li>
         <a class="selected" href="#/">All</a>
       </li>

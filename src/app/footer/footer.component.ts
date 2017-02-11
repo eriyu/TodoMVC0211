@@ -11,7 +11,24 @@ export class FooterComponent implements OnInit, OnChanges {
   @Output() clearCompleted:EventEmitter<any> = new EventEmitter();
   @Output() filterData:EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  actions:any[] = [
+    {
+      'code':'All',
+      'selected':false
+    },
+    {
+      'code':'Active',
+      'selected':false
+    },
+    {
+      'code':'Completed',
+      'selected':false
+    }
+  ];
+
+  constructor() {
+    this.makeActionSelected('All');
+  }
 
   ngOnInit() {
 
@@ -25,8 +42,19 @@ export class FooterComponent implements OnInit, OnChanges {
     this.clearCompleted.emit(true);
   }
 
-  fireDoFilter(action){
-    this.filterData.emit(action);
+  fireDoFilter(actioncode){
+    this.makeActionSelected(actioncode);
+    this.filterData.emit(actioncode);
+  }
+
+  makeActionSelected(actioncode){
+    this.actions = this.actions.map((item) => {
+      item.selected = false;
+      if(actioncode === item.code){
+        item.selected = true;
+      }
+      return item;
+    });
   }
 
 }
