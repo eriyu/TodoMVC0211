@@ -17,13 +17,19 @@ export class DataService {
     return options;
   }
 
-  saveTodos(todos): Observable<any[]> {
+  deleteDetials(index): Observable<any[]> {
+    return this.http.delete(`/me/todos/${index}`,this.getAuthorizationHeader())
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
+  saveDetials(todos): Observable<any[]> {
     return this.http.post('/me/todos',todos,this.getAuthorizationHeader())
                     .map(this.extractData)
                     .catch(this.handleError);
   }
 
-  getTodos(): Observable<any[]> {
+  getDetails(): Observable<any[]> {
     return this.http.get('/me/todos',this.getAuthorizationHeader())
                     .map(this.extractData)
                     .catch(this.handleError);

@@ -22,27 +22,31 @@ export class AppComponent implements OnInit {
 
   getTodos(){
     this.dataService
-      .getTodos()
+      .getDetails()
       .subscribe((data) => {
         this.todos = data;
       });
   }
 
   addTodo(todoInput:HTMLInputElement){
-    // this.todos.push({
-    //   title:this.todo,
-    //   done:false
-    // });
-    this.todos = [...this.todos,{
+    let todos = [...this.todos,{
       title:this.todo,
       done:false
     }];
+    this.dataService
+      .saveDetials(todos)
+      .subscribe(() => {
+        this.getTodos();
+      });
     todoInput.value = null;
   }
 
   removeTodo(itemidx){
-    this.todos.splice(itemidx,1);
-    this.todos = [...this.todos];
+    this.dataService
+      .deleteDetials(itemidx)
+      .subscribe(() => {
+        this.getTodos();
+      });
   }
 
   toggleComplete(item){
