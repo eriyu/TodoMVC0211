@@ -10,9 +10,9 @@
     <ul class="todo-list">
       <!-- These are here just to show the structure of the list items -->
       <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
-      <li *ngFor="let item of todos" [ngClass]="{completed:item.checked}">
+      <li *ngFor="let item of (todos | filterData:action)" [ngClass]="{completed:item.checked}">
         <div class="view">
-          <input class="toggle" type="checkbox" (click)="makeComplete(item)">
+          <input class="toggle" type="checkbox" (click)="toggleComplete(item)">
           <label>{{item.title | uppercase}}</label>
           <button class="destroy"></button>
         </div>
@@ -20,8 +20,11 @@
       </li>
     </ul>
   </section>
+      <!--<pre>
+      {{todos | json | filterData:'Completed' }}
+    </pre>-->
   <!-- This footer should hidden by default and shown when there are todos -->
-  <app-footer [data]="todos" (clearCompleted)="doClearCompleted($event)"></app-footer>
+  <app-footer [data]="todos" (clearCompleted)="doClearCompleted($event)" (filterData)="doFilterData($event)"></app-footer>
 </section>
 <footer class="info">
   <p>Double-click to edit a todo</p>

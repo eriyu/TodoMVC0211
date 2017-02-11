@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { FilterDataPipe } from './filter-data.pipe';
 
 const components = [
   HeaderComponent,
@@ -15,7 +16,8 @@ const components = [
 @NgModule({
   declarations: [
     AppComponent,
-    ...components
+    ...components,
+    FilterDataPipe
   ],
   imports: [
     BrowserModule,

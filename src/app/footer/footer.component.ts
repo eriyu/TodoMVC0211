@@ -9,6 +9,7 @@ export class FooterComponent implements OnInit, OnChanges {
 
   @Input() data:any[];
   @Output() clearCompleted:EventEmitter<any> = new EventEmitter();
+  @Output() filterData:EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -22,6 +23,10 @@ export class FooterComponent implements OnInit, OnChanges {
 
   fireClearCompleted(){
     this.clearCompleted.emit(true);
+  }
+
+  fireDoFilter(action){
+    this.filterData.emit(action);
   }
 
 }

@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   inputHint:string = 'Please input your todo item';
   todos:any[] = [];
   todo:string;
+  action:string = 'All';
 
   constructor() { }
 
@@ -24,8 +25,8 @@ export class AppComponent implements OnInit {
     todoInput.value = null;
   }
 
-  makeComplete(item){
-    item.checked = true;
+  toggleComplete(item){
+    item.checked = !item.checked;
   }
 
   doClearCompleted(isCompleted){
@@ -34,6 +35,10 @@ export class AppComponent implements OnInit {
         return (item.checked) ? false : true;
       });
     }
+  }
+
+  doFilterData(_action){
+    this.action = _action;
   }
 
 }
