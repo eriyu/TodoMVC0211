@@ -17,9 +17,15 @@ export class AppComponent implements OnInit {
   }
 
   addTodo(todoInput:HTMLInputElement){
-    this.todos.push(this.todo);
+    this.todos.push({
+      title:this.todo,
+      checked:false
+    });
     todoInput.value = null;
-    console.log(this.todos);
+  }
+
+  makeComplete(item){
+    item.checked = true;
   }
 
 }
