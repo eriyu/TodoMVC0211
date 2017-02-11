@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   addTodo(todoInput:HTMLInputElement){
     this.todos.push({
       title:this.todo,
-      checked:false
+      done:false
     });
     todoInput.value = null;
   }
@@ -31,13 +31,13 @@ export class AppComponent implements OnInit {
   }
 
   toggleComplete(item){
-    item.checked = !item.checked;
+    item.done = !item.done;
   }
 
   doClearCompleted(isCompleted){
     if(isCompleted){
       this.todos = this.todos.filter((item) => {
-        return (item.checked) ? false : true;
+        return (item.done) ? false : true;
       });
     }
   }
@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
 
   toggleAll(){
     this.todos = this.todos.map((item) => {
-      item.checked = !item.checked;
+      item.done = !item.done;
       return item;
     });
   }

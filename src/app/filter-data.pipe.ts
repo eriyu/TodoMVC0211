@@ -10,11 +10,9 @@ export class FilterDataPipe implements PipeTransform {
       case 'All':
         return value;
       case 'Active':
-        return value.filter(item => !item.checked);
-        //filterData = filterData.filter(item => !item.checked);
+        return value.filter(item => !item.done);
       case 'Completed':
-        return value.filter(item => item.checked);
-        //filterData = filterData.filter(item => item.checked);
+        return value.filter(item => item.done);
     }
     return  null;
   }
