@@ -9,14 +9,16 @@ export class AppComponent implements OnInit {
 
   inputHint:string = 'Please input your todo item';
   todos:any[] = [];
+  todo:string;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  addTodo(todoval:string){
-    this.todos.push(todoval);
+  addTodo(todoInput:HTMLInputElement){
+    this.todos.push(this.todo);
+    todoInput.value = null;
     console.log(this.todos);
   }
 
