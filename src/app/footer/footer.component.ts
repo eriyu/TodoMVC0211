@@ -1,4 +1,5 @@
 import {Input, Component,  OnInit ,OnChanges,Output,EventEmitter} from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-footer',
@@ -26,7 +27,7 @@ export class FooterComponent implements OnInit, OnChanges {
     }
   ];
 
-  constructor() {
+  constructor(private dataService: DataService) {
     this.makeActionSelected('All');
   }
 
@@ -56,5 +57,7 @@ export class FooterComponent implements OnInit, OnChanges {
       return item;
     });
   }
+
+
 
 }

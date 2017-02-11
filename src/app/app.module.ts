@@ -7,16 +7,13 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FilterDataPipe } from './filter-data.pipe';
-
-const components = [
-  HeaderComponent,
-  FooterComponent
-];
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ...components,
+    HeaderComponent,
+    FooterComponent,
     FilterDataPipe
   ],
   imports: [
@@ -24,7 +21,7 @@ const components = [
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

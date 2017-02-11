@@ -1,5 +1,6 @@
 import {Http} from '@angular/http';
 import { Component, OnInit } from '@angular/core';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -13,21 +14,35 @@ export class AppComponent implements OnInit {
   todo:string;
   action:string = 'All';
 
-  constructor(private http:Http) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.getTodos();
+  }
+
+  getTodos(){
+    this.dataService
+      .getTodos()
+      .subscribe((data) => {
+        this.todos = data;
+      });
   }
 
   addTodo(todoInput:HTMLInputElement){
-    this.todos.push({
+    // this.todos.push({
+    //   title:this.todo,
+    //   done:false
+    // });
+    this.todos = [...this.todos,{
       title:this.todo,
       done:false
-    });
+    }];
     todoInput.value = null;
   }
 
   removeTodo(itemidx){
     this.todos.splice(itemidx,1);
+    this.todos = [...this.todos];
   }
 
   toggleComplete(item){
@@ -46,9 +61,9 @@ export class AppComponent implements OnInit {
     this.action = actioncode;
   }
 
-  toggleAll(){
+  toggleAll(status:boolean){
     this.todos = this.todos.map((item) => {
-      item.done = !item.done;
+      item.done = status;
       return item;
     });
   }

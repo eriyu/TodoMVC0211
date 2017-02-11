@@ -4,9 +4,9 @@
     <!-- Remove this if you don't implement routing -->
     <ul class="filters">
       <li *ngFor="let action of actions">
-        <a [ngClass]="{selected:action.selected}" href="#" (click)="fireDoFilter(action.code)">{{action.code}}</a>
+        <a [ngClass]="{selected:action.selected}" href="#/{{action.code}}" (click)="fireDoFilter(action.code)">{{action.code}}</a>
       </li>
     </ul>
     <!-- Hidden if no completed items are left ↓ -->
-    <button class="clear-completed" (click)="fireClearCompleted()">Clear completed</button>
+    <button class="clear-completed" [style.padding-left.px]="10" (click)="fireClearCompleted()">Clear completed</button>
   </footer>
